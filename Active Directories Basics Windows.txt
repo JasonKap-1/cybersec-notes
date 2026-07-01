@@ -81,6 +81,7 @@ Task 6 Group Policies
 - Security Filtering
 
 - GPO distribution
- -> GPOs are distributed to the network via a network share called SYSVOL, which is stored in the DC
+ -> C:\Windows\SYSVOL\sysvol\
+ -> GPOs are distributed to the network via a network share called SYSVOL, which is stored in the DC 
  -> Once a change has been made to any GPOs, it might take up to 2 hours for computers to catch up, to force a computer to sync its GPOs immediatelty you can run "gpupdate /force" in powershell
 
