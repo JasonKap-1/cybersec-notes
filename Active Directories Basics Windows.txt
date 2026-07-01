@@ -68,4 +68,4 @@ Tsk 4 Managing users in AD
  - if you cant delete an OU container you need to go to view>Advanced Features then go to the OU you wish to delete >properties>object and uncheck "Protect object from accidental deletion"
 
  - One of the nice things you can do in AD is to give specific users some control over some OUs. This process is known as delegation and allows you to grant users specific privileges to perform advanced tasks on OUs without needing a Domain Administrator to step in.
-   -> to do this you need to right click on the container and click on Delegate Control and then select a user
+   -> to do this you need to right click on the container and click on Delegate Control and then select a user 
