@@ -65,7 +65,22 @@ Security Groups: Used to grant permission over resources. For ex you will use gr
 
 Tsk 4 Managing users in AD
 
- - if you cant delete an OU container you need to go to view>Advanced Features then go to the OU you wish to delete >properties>object and uncheck "Protect object from accidental deletion"
+ - If you cant delete an OU container you need to go to view>Advanced Features then go to the OU you wish to delete >properties>object and uncheck "Protect object from accidental deletion"
 
  - One of the nice things you can do in AD is to give specific users some control over some OUs. This process is known as delegation and allows you to grant users specific privileges to perform advanced tasks on OUs without needing a Domain Administrator to step in.
    -> to do this you need to right click on the container and click on Delegate Control and then select a user 
+
+Task 5 Managing computers in AD
+
+- Usually all computers are in one containers but if we have servers,workstations etc. we want different policies for each so:
+   -> make for ex. 2 OU's one called Workstations and other called Servers and place its computer accordingly
+
+Task 6 Group Policies
+
+- Policies are managed throught Group Policy Object (GPO) which are pretty much a collection of settings that can be applied to OUs
+- Security Filtering
+
+- GPO distribution
+ -> GPOs are distributed to the network via a network share called SYSVOL, which is stored in the DC
+ -> Once a change has been made to any GPOs, it might take up to 2 hours for computers to catch up, to force a computer to sync its GPOs immediatelty you can run "gpupdate /force" in powershell
+

@@ -12,3 +12,4 @@ cls: to clear the command prompt
 net: manager netwrok sources
  - netstat: Per the help manual, this command will display protocol statistics and current TCP/IP network connections.
  - /? will not work to get a manual of the net command so net help must be used instead 
+gpupdate /force : force gpo update
