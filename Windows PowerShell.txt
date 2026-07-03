@@ -1,0 +1,48 @@
+Task 2 What is Powershell
+- Objects in Programming & PowerShell
+An object bundles together data (called properties) and actions it can perform (called methods).
+Example — a Car object:
+
+Properties: Color, Model, FuelLevel
+Methods: Drive(), HonkHorn(), Refuel()
+
+In PowerShell, everything you work with files, processes, usernames, sizes  is treated as an object. This makes handling and manipulating that data much more consistent.
+
+Properties hold the object's info (e.g. a file's name, size, or last-modified date)
+Methods are actions you can run on it (e.g. copying a file, killing a process)
+
+This object-based design is a big part of why PowerShell feels different from older shells like cmd — instead of just passing raw text between commands, it passes structured objects with built-in data and actions attached.
+
+
+Task 3 Powershell Basics
+- PowerShell Basic Syntax: Verb-Noun
+PowerShell commands are called cmdlets (command-lets): they're more capable than traditional Windows commands and offer richer ways to work with data.
+Cmdlets follow a Verb-Noun naming pattern, which makes their purpose easy to guess at a glance. The verb tells you the action; the noun tells you what it's acting on.
+Examples:
+
+Get-Content: reads and displays a file's contents
+Set-Location: changes the current directory
+
+- Key cmdlets to know:
+
+Get-Command: lists every cmdlet, function, alias, and script available in your session. Useful for discovering what's out there. You can narrow the list by type, e.g. Get-Command -CommandType "Function" shows only functions.
+Get-Help: pulls up documentation for a cmdlet, including syntax, parameters, and usage examples. It's the main way to learn how something works.
+
+Example: Get-Help Get-Date -examples doesn't just show the syntax, it appends real usage examples for Get-Date, so you can see the cmdlet in action rather than just its parameter list. Other useful flags: -detailed, -full, -online.
+
+
+Aliases: shortcuts for cmdlets, included to ease the transition for people used to older command-line tools. Get-Alias lists them all. For instance, dir is an alias for Get-ChildItem, and cd is an alias for Set-Location.
+
+- Finding and Downloading Cmdlets
+PowerShell can be extended by pulling in extra cmdlets from online sources, expanding what it can do beyond what's built in.
+Note: this requires an active internet connection, so it won't work on an offline/isolated machine.
+Key cmdlets:
+
+Find-Module: searches online repositories (like the PowerShell Gallery) for modules, which are essentially bundles of cmdlets. If you don't know the exact module name, you can search with a wildcard using the pattern Cmdlet -Property "pattern*".
+
+Example: Find-Module -Name "PowerShell*" returns any module whose name starts with "PowerShell," showing its version, name, source repository, and a short description.
+
+
+Install-Module: downloads and installs a module you've found, making its cmdlets available for use.
+
+Example: Install-Module -Name "PowerShellGet" installs that module. If the repository isn't marked as trusted, PowerShell will prompt you to confirm before installing, since it's treating that source as unverified by default.
