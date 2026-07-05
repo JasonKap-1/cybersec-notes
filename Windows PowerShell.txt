@@ -80,3 +80,37 @@ Select-Object: picks specific properties to display, or limits result count
 - Pipelines can chain more than two cmdlets together (e.g. filter then sort then select).
 - Select-String: searches for text patterns inside files (like grep/findstr)
 Select-String -Path ".\captain-hat.txt" -Pattern "hat": Returns matching lines with line numbers. Supports regex for more advanced pattern matching.
+
+Task 6 System and Network Information
+-> Get-ComputerInfo: retrieves full system details (OS, hardware, BIOS, etc.) in one command. More comprehensive than the older systeminfo command. Traditional equivalent: systeminfo
+-> Get-LocalUser: lists all local user accounts, showing username, enabled status, and description for each. Traditional equivalent: net user
+-> Get-NetIPConfiguration: shows network interface config (IP address, DNS, gateway). Traditional equivalent: ipconfig
+-> Get-NetIPAddress: shows details on all IP addresses on the system, including inactive ones. More granular than Get-NetIPConfiguration, covers every configured address (IPv4/IPv6, loopback, etc.). Traditional equivalent: ipconfig /all
+
+Task 7 Real-Time System Analysis
+-> Get-Process: shows all currently running processes, including CPU and memory usage. Useful for monitoring and troubleshooting.
+-> Get-Service: shows status of services on the machine (running, stopped, paused). Used for troubleshooting and also by forensics analysts hunting for suspicious/anomalous services.
+-> Get-NetTCPConnection: shows active TCP connections (local and remote endpoints, state, owning process). Useful in incident response and malware analysis for spotting backdoors or connections to attacker-controlled servers.
+-> Get-FileHash: generates a file's hash (e.g. SHA256). Used to verify file integrity and detect tampering, common in incident response and malware analysis.
+-> Get-Item -Path "path" -Stream *: shows Alternate Data Streams (ADS) attached to a file. Every NTFS file has a default stream called :$DATA holding its normal contents, this is not an ADS. Any additional stream (e.g. filename:streamname) is a hidden ADS attached to the file, potentially used to conceal data.
+
+Task 8 Scripting
+-Scripting
+Writing a series of commands into a text file (a script) so they run automatically instead of manually, one by one. Saves time, reduces mistakes, and lets you automate tasks too complex or repetitive to do by hand.
+Why it matters in cybersecurity
+-> Blue team (incident responders, malware analysts, threat hunters)
+automate log analysis, anomaly detection, extracting IOCs, reverse-engineering malware, scanning for intrusions
+-> Red team (pentesters, ethical hackers)
+automate system enumeration, run remote commands, build obfuscated scripts to evade defenses, simulate attacks
+-> Sysadmins
+automate integrity checks, manage configs, enforce security policies, monitor system health, respond to incidents automatically
+-Invoke-Command
+Runs commands on local or remote systems. Core cmdlet for remote management and automation across multiple machines. Also used by pentesters (or attackers) to execute payloads/commands on a target system.
+ Example 1, run a script on a remote machine
+Invoke-Command -FilePath c:\scripts\test.ps1 -ComputerName Server01
+The script sits on your local machine, FilePath points to it, and it executes on the remote computer (Server01), with results sent back to you.
+ Example 2, run a single command remotely without needing an actual script file
+Invoke-Command -ComputerName Server01 -Credential Domain01\User01 -ScriptBlock { Get-Culture }
+ComputerName specifies the target machine. Credential runs the command as a specific user (here Domain01\User01) who has permission. ScriptBlock holds the actual command(s) to run, PowerShell will prompt for that user's password/auth before executing. Result is identical to typing the command directly in a local session on that remote machine.
+
+
